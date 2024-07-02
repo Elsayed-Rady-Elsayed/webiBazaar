@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    cursor: default;
 }
 .active{
     color: goldenrod !important;
@@ -25,7 +26,7 @@
 .cards .icons{
     opacity: 0;
     transition: all .3s;
-    transform: translateY(20px);
+    transform: translate(50px);
 }
 .cards .card:hover .icons{
     opacity: 1;
@@ -35,8 +36,68 @@
     filter: brightness(90%);
     border-radius: 10px;
 }
+.imgContaienr{
+    position: relative;
+    transition: all .3s;
+}
+.imgContaienr span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0%;
+    background-color: white;
+    opacity: .2;
+}
+.forceHight{
+    /* height: 200px !important; */
+    width: 100% !important;
+    height: fit-content !important;
+}
+.forceHight img{
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+#featurePage,#ContactUsPage{
+    display: none;
+}
+.cart{
+    width: 250px;
+    right: 10px;
+    top: 100%;
+    display: none;
+}
+@keyframes imgHover{
+    from{
+        height: 0;
+    }
+    to{
+        height: 100%;
+    }
+}
 @media screen and (max-width:500px) {
     .icons{
-        left: 15%;
+        /* left: 15%; */
+    }
+    .imgCreateVaio{
+        height: 200px;
+    }
+    .imgCreateVaio .text{
+        top: 20% !important;
+        left: 10% !important;
+    }
+    .imgCreateVaio img{
+        height: 100%;
+        object-fit: fill;
+    }
+    .inputForSignUp{
+        width: 100% !important;
+    }
+    .featurePage .content .content .item img{
+        width: 100% !important;
+    }
+    .featurePage .content .content .item{
+        height: 300px !important;
     }
 }
