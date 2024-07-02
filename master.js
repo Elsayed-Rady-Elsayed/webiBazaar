@@ -15,19 +15,19 @@ $(document).ready(function () {
       $(".btn-close").on("click",function () {
         $(".cart").slideUp();
       })
-      $("#ShopBtnLg").on("click",function(){
-        $("#carouselExampleCaptions ,  #ContactUsPage  , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+      $("#ShopBtnLg , #shopBtn").on("click",function(){
+        $("#carouselExampleCaptions , #BlogPage , #ContactUsPage  , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
         $("#shopItemsPage").css({
           display:"block"
       })
       });
-      $("#HomeBtnLg").on("click",function(){
-        $("#carouselExampleCaptions , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+      $("#HomeBtnLg , #HomeBtn").on("click",function(){
+        $("#carouselExampleCaptions , #BlogPage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"block"
         });
-        $("#shopItemsPage ,  #ContactUsPage  , #featurePage").css({
+        $("#shopItemsPage , #BlogPage ,  #ContactUsPage  , #featurePage").css({
           display:"none"
       })
       });
@@ -53,19 +53,27 @@ $(document).ready(function () {
           el.children[0].style.maxWidth = "85%";
         });
       });
-      $("#showFeaturesLg").on("click",function(){
-        $("#carouselExampleCaptions , #shopItemsPage , #ContactUsPage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+      $("#showFeaturesLg , #featurePageBtn").on("click",function(){
+        $("#carouselExampleCaptions , #BlogPage , #shopItemsPage , #ContactUsPage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
         $("#featurePage").css({
           display:"flex"
       })
       });
-      $("#ContactUsLg").on("click",function(){
-        $("#carouselExampleCaptions , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+      $("#ContactUsLg , #ContactPageBtn").on("click",function(){
+        $("#carouselExampleCaptions , #BlogPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
         $("#ContactUsPage").css({
+          display:"flex"
+      })
+      });
+      $("#BlogPageLg1 , #BlogPageLg2 , #BlogPageLg3 , #BlogBtn").on("click",function(){
+        $("#carouselExampleCaptions , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+            display:"none"
+        });
+        $("#BlogPage").css({
           display:"flex"
       })
       });

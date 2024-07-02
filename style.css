@@ -59,7 +59,7 @@
     width: 100% !important;
     height: 100% !important;
 }
-#featurePage,#ContactUsPage{
+#featurePage,#ContactUsPage,#BlogPage{
     display: none;
 }
 .cart{
@@ -67,6 +67,9 @@
     right: 10px;
     top: 100%;
     display: none;
+}
+.icons{
+    transform: translate(0) !important;
 }
 @keyframes imgHover{
     from{
@@ -99,5 +102,14 @@
     }
     .featurePage .content .content .item{
         height: 300px !important;
+    }
+    #BlogPage .content .card{
+        height: fit-content !important;
+    }
+}
+@media screen and (max-width:850px) {
+
+    #BlogPage .content .card{
+        height: fit-content !important;
     }
 }
