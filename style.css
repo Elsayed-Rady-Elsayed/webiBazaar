@@ -59,7 +59,11 @@
     width: 100% !important;
     height: 100% !important;
 }
-#featurePage,#ContactUsPage,#BlogPage,#servicesPage,#faqsPage,#GallryPage{
+#featurePage,#ContactUsPage,
+#BlogPage,#servicesPage,#faqsPage,
+#GallryPage,#emelentPage,
+#page404,#wishListPage,#showProduct
+{
     display: none;
 }
 .cart{
@@ -111,6 +115,9 @@
     }
     #BlogPage .content .card{
         height: fit-content !important;
+    }
+    #numError{
+        font-size: 10rem !important;
     }
 }
 @media screen and (max-width:850px) {
