@@ -59,7 +59,7 @@
     width: 100% !important;
     height: 100% !important;
 }
-#featurePage,#ContactUsPage,#BlogPage{
+#featurePage,#ContactUsPage,#BlogPage,#servicesPage,#faqsPage,#GallryPage{
     display: none;
 }
 .cart{
@@ -70,6 +70,12 @@
 }
 .icons{
     transform: translate(0) !important;
+}
+#GallryPage .content img{
+    transition: all .5s;
+}
+#GallryPage .content img:hover{
+    transform: scale(1.07);
 }
 @keyframes imgHover{
     from{
@@ -111,5 +117,8 @@
 
     #BlogPage .content .card{
         height: fit-content !important;
+    }
+    #GallryPage{
+        width: 100%;
     }
 }

@@ -16,18 +16,18 @@ $(document).ready(function () {
         $(".cart").slideUp();
       })
       $("#ShopBtnLg , #shopBtn").on("click",function(){
-        $("#carouselExampleCaptions , #BlogPage , #ContactUsPage  , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+        $("#carouselExampleCaptions , #GallryPage , #faqsPage , #servicesPage  , #BlogPage , #ContactUsPage  , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
         $("#shopItemsPage").css({
           display:"block"
       })
       });
-      $("#HomeBtnLg , #HomeBtn").on("click",function(){
+      $("#HomeBtnLg , #HomeFromLogo , #HomeBtn").on("click",function(){
         $("#carouselExampleCaptions , #BlogPage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"block"
         });
-        $("#shopItemsPage , #BlogPage ,  #ContactUsPage  , #featurePage").css({
+        $("#shopItemsPage , #servicesPage , #GallryPage , #faqsPage , #BlogPage ,  #ContactUsPage  , #featurePage").css({
           display:"none"
       })
       });
@@ -54,15 +54,15 @@ $(document).ready(function () {
         });
       });
       $("#showFeaturesLg , #featurePageBtn").on("click",function(){
-        $("#carouselExampleCaptions , #BlogPage , #shopItemsPage , #ContactUsPage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+        $("#carouselExampleCaptions , #GallryPage , #faqsPage , #servicesPage   , #BlogPage , #shopItemsPage , #ContactUsPage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
         $("#featurePage").css({
           display:"flex"
       })
       });
-      $("#ContactUsLg , #ContactPageBtn").on("click",function(){
-        $("#carouselExampleCaptions , #BlogPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+      $("#ContactUsLg  , #ContactPageBtn").on("click",function(){
+        $("#carouselExampleCaptions , #GallryPage , #faqsPage , #servicesPage , #BlogPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
         $("#ContactUsPage").css({
@@ -70,10 +70,34 @@ $(document).ready(function () {
       })
       });
       $("#BlogPageLg1 , #BlogPageLg2 , #BlogPageLg3 , #BlogBtn").on("click",function(){
-        $("#carouselExampleCaptions , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+        $("#carouselExampleCaptions , #GallryPage , #faqsPage , #servicesPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
         $("#BlogPage").css({
+          display:"flex"
+      })
+      });
+      $("#servicesPageBtn , #servicesBtnPagesSm").on("click",function(){
+        $("#carouselExampleCaptions , #GallryPage , #faqsPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+            display:"none"
+        });
+        $("#servicesPage").css({
+          display:"block"
+      })
+      });
+      $("#faqsPagePageBtnLg , #faqsPagePageBtnSm").on("click",function(){
+        $("#carouselExampleCaptions , #GallryPage  , #servicesPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+            display:"none"
+        });
+        $("#faqsPage").css({
+          display:"flex"
+      })
+      });
+      $("#galleryPagePageBtnLg , #galleryPagePageBtnSm").on("click",function(){
+        $("#carouselExampleCaptions , #faqsPage , #servicesPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
+            display:"none"
+        });
+        $("#GallryPage").css({
           display:"flex"
       })
       });
