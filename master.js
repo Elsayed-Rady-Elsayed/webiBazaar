@@ -261,7 +261,7 @@ $(document).ready(function () {
       </div>
             `;
         } else {
-          history.back();
+          // history.back();
         }
     }
     window.addEventListener('hashchange', updateProductDetails);
