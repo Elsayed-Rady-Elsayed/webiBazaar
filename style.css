@@ -67,9 +67,15 @@
     display: none;
 }
 .cart{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 680px;
     width: 350px;
     right: 10px;
     top: 100%;
+    display: none;
+}
+::-webkit-scrollbar{
     display: none;
 }
 .icons{

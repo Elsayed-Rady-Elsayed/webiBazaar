@@ -12,6 +12,7 @@
     </div>
     <div id="showProduct" class="container row m-auto pt-5"></div>
     <script>
+ 
         document.getElementById("backHome").onclick = function () { 
             history.back();
          }
@@ -186,8 +187,10 @@
         console.log(user);
       });
     }
-    addToCartOrWishList("#addToCart");
-    addToCartOrWishList("#addToCartWishes");
+    if(window.localStorage.getItem("isLogined")){
+        addToCartOrWishList("#addToCart");
+        addToCartOrWishList("#addToCartWishes");
+      }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>

@@ -3,12 +3,15 @@
     {
       "id": "1",
       "name": "Updated Sayed Rady",
-      "email": "updated_sayedrady61@gmail.com",
+      "email": "sayedrady61@gmail.com",
       "status": "online",
-      "password": "newpass1111",
-      "cart": [],
+      "password": "111",
+      "cart": [
+        1
+      ],
       "wishlist": [
-        22
+        22,
+        2
       ]
     },
     {
@@ -16,9 +19,12 @@
       "name": "fdsa",
       "email": "sayedrady61@gmail.com",
       "status": "online",
-      "password": "123",
-      "cart": [],
-      "wishlist": []
+      "cart": [
+        1
+      ],
+      "wishlist": [
+        1
+      ]
     },
     {
       "id": "3",
@@ -30,7 +36,9 @@
         1,
         2,
         2,
-        2
+        2,
+        0,
+        0
       ],
       "wishlist": [
         2,
@@ -62,6 +70,20 @@
       "password": "222",
       "cart": [],
       "wishlist": []
+    },
+    {
+      "id": "51",
+      "name": "sayed rady",
+      "email": "sayedrady61@gmail.com",
+      "status": "online",
+      "password": "123",
+      "cart": [
+        2,
+        2
+      ],
+      "wishlist": [
+        2
+      ]
     }
   ],
   "products": [
