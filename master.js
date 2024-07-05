@@ -60,6 +60,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #showProduct , #wishListPage , #page404  , #emelentPage , #GallryPage , #faqsPage , #servicesPage   , #BlogPage , #shopItemsPage , #ContactUsPage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#featurePage").css({
           display:"flex"
       })
@@ -69,6 +70,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #showProduct , #wishListPage , #page404  , #emelentPage , #GallryPage , #faqsPage , #servicesPage , #BlogPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#ContactUsPage").css({
           display:"flex"
       })
@@ -78,6 +80,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #showProduct , #wishListPage , #page404  , #emelentPage , #GallryPage , #faqsPage , #servicesPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#BlogPage").css({
           display:"flex"
       })
@@ -87,6 +90,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #showProduct , #wishListPage , #page404  , #emelentPage , #GallryPage , #faqsPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#servicesPage").css({
           display:"block"
       })
@@ -96,6 +100,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #showProduct , #wishListPage , #page404  , #emelentPage , #GallryPage  , #servicesPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#faqsPage").css({
           display:"flex"
       })
@@ -105,6 +110,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #showProduct , #wishListPage , #page404  , #emelentPage , #faqsPage , #servicesPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#GallryPage").css({
           display:"flex"
       })
@@ -114,6 +120,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions  , #showProduct , #wishListPage , #page404  , #GallryPage , #faqsPage , #servicesPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#emelentPage").css({
           display:"block"
       })
@@ -122,6 +129,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #showProduct , #wishListPage , #emelentPage , #GallryPage , #faqsPage , #servicesPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#page404").css({
           display:"block"
       })
@@ -138,6 +146,7 @@ $(document).ready(function () {
         $("#carouselExampleCaptions , #wishListPage , #page404 , #emelentPage , #GallryPage , #faqsPage , #servicesPage , #BlogPage , #ContactUsPage , #shopItemsPage , #featurePage , #MainItems , #FeaturedItems , #CategoryProduct , #Banner ").css({
             display:"none"
         });
+        window.scroll(0, 0);
         $("#showProduct").css({
           display:"flex"
       })
@@ -158,7 +167,6 @@ $(document).ready(function () {
     function updateProductDetails() {
         const params = getParams();
         const productContent = document.getElementById('showProduct');
-        console.log(params);
         if (params.id && params.name && params.img && params.price) {
             productContent.innerHTML = `
             <div class="col-12 align-items-center justify-content-center col-md-4">
@@ -264,6 +272,242 @@ $(document).ready(function () {
           // history.back();
         }
     }
-    window.addEventListener('hashchange', updateProductDetails);
-    updateProductDetails();
+
+    const apiUrl = "http://localhost:3000/";
+    var data;
+    var LastIdPromise = new Promise((resolve,reject)=>{
+        fetch(`${apiUrl}user`).then(response=>response.text()).then(data=>{
+          resolve(JSON.parse(data));
+        });
+    });  
+    var s;
+    async function setData() {
+      const name = document.getElementById("Inputname").value.toString();
+      const email = document.getElementById("InputEmail1").value.toString();
+      const pass = document.getElementById("Password1").value.toString();
+      const confPass = document.getElementById("InputConfPassword1").value.toString();
+      s = await LastIdPromise;
+      const lastId = s.length == 0 ? 0 : s[s.length - 1]["id"];
+      if(name.length != 0 && email.length != 0&& pass.length!=0&&confPass.length!=0&&pass==confPass){
+        const data = {
+          id:lastId + 1,
+          name:name,
+          email:email,
+          status:"online",
+          password:pass,
+          cart:[],
+          wishlist:[],
+        };
+        console.log(data);
+        document.getElementById("createAccount").setAttribute("data-bs-toggle","modal");
+        return data;
+      }else{
+        document.getElementById("createAccount").setAttribute("data-bs-toggle","");
+        return "";
+      }
+    }
+    $("#createAccount").on("click",async function(){
+        var data = await setData();
+        const options = {
+         method:"POST",
+          headers:{
+            'Content-Type': 'application/json'
+          },
+          body:JSON.stringify(data),
+        }
+        fetch(`${apiUrl}user`,options).then(response=>{
+            if(response.ok){
+              document.getElementById("createAccount").setAttribute("data-bs-toggle","modal");
+              return response.json();
+            }else{
+              throw new Error("problem occured"+response.statusText);
+            }
+          }).then(data=>{
+            console.log("success"+data);
+          }).catch(error=>{
+            console.log(error);
+          }); 
+    });
+    $("#LoginBtn").on("click",async function(){
+      var users = await LastIdPromise;
+      const email = document.getElementById("exampleInputEmail1Login").value.toString();
+      const pass = document.getElementById("exampleInputPassword1Login").value.toString();
+      users.forEach(el=>{
+        if(el["email"]==email&&el["password"] == pass){
+          document.getElementById("LoginBtn").setAttribute("data-bs-toggle","modal");
+          window.localStorage.setItem("isLogined",true);
+          window.localStorage.setItem("user",JSON.stringify(el));
+        }
+      });
+      console.log(users);
+    });
+    var user;
+    if(window.localStorage.getItem("isLogined")){
+      user = JSON.parse(window.localStorage.getItem("user"));
+      document.getElementById("profileBtn").classList.remove("d-none");
+      document.getElementById("logoutBtn").classList.remove("d-none");  
+      document.getElementById("LoginBtnShow").classList.add("d-none");  
+      document.getElementById("createAccountShow").classList.add("d-none");  
+    }else{
+      document.getElementById("profileBtn").classList.add("d-none");
+      document.getElementById("logoutBtn").classList.add("d-none");  
+      document.getElementById("LoginBtnShow").classList.remove("d-none");  
+      document.getElementById("createAccountShow").classList.remove("d-none");  
+    }
+    document.getElementById("logoutBtn").onclick = function () { 
+      window.localStorage.clear();
+      window.location.reload();
+    };  
+    function addToCartOrWishList(elment) {
+      document.querySelector(elment).addEventListener("click",function(ev){
+        if(ev.target.classList.contains("addToCart")){
+          if(ev.target.parentElement.previousElementSibling.classList.contains("item")){
+          console.log("add to cart");
+          user.cart.push(Number(ev.target.parentElement.previousElementSibling.getAttribute("data-bs-pid")));
+        }
+        }if(ev.target.classList.contains("addToCartWishes")){
+          if(ev.target.parentElement.previousElementSibling.classList.contains("item")){
+            console.log(ev.target.parentElement.previousElementSibling.getAttribute("data-bs-pid"));
+            user.wishlist.push(Number(ev.target.parentElement.previousElementSibling.getAttribute("data-bs-pid")));
+          }
+        }
+        const data = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            status: user.status,
+            password: user.pass,
+            cart: user.cart,
+            wishlist: user.wishlist
+        };
+        const options = {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(`${apiUrl}user/${user.id}`, options)
+          .then(response => {
+              if (response.ok) {
+                  return response.json();
+              } else {
+                  throw new Error("Problem occurred: " + response.statusText);
+              }
+          })
+          .then(data => {
+              console.log("Success:", data);
+          })
+          .catch(error => {
+              console.error("Error:", error);
+          });
+        window.localStorage.setItem("user",JSON.stringify(user));  
+        console.log(user);
+      });
+    }
+    var allProducts = new Promise((resolve,reject)=>{
+      fetch(`${apiUrl}products`).then(res=>res.json()).then(data=>{
+        resolve(data);
+      });
+    });
+    async function getAllProducts(){
+      var p = await allProducts;
+      p.forEach(el=>{
+        var div = document.createElement("div");
+        var productCard = `
+        <div class="col-12 col-md-3  d-flex flex-column justify-content-between">
+                  <a data-bs-pid="${el.id}" href="shop.html?id=${el.id}&name=${el.name}&img=${el.img}&price=${el.price}" class="item productCard card border-0  p-1 pointer-event h-50  text-decoration-none">         
+                    <img src="${el.img}" class="img-fluid" alt="">
+                      <div class="text">
+                          <div class="stars mt-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star" viewBox="0 0 16 16">
+                                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star" viewBox="0 0 16 16">
+                                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star" viewBox="0 0 16 16">
+                                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star" viewBox="0 0 16 16">
+                                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-star" viewBox="0 0 16 16">
+                                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                                </svg>
+                          </div>
+                          <p class="m-0 fw-semibold text-capitalize">${el.name}</p>
+                          <div class="price d-flex gap-3">
+                          <p class="fw-bold">$${el.price}</p>
+                          <p class="fw-light text-decoration-line-through text-black-50 small">$${el.old_price}</p>
+                          </div>
+                      </div>
+                  </a>
+                  <div class="gap-2 d-flex align-items-center justify-content-center ">
+                    <span class="bg-body-secondary p-2 rounded rounded-2 addToCart w-50 text-center z-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addToCart bi bi-basket" viewBox="0 0 16 16">
+                          <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9zM1 7v1h14V7zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                  </span>
+                  <span class="bg-body-secondary p-2 rounded rounded-2 addToCartWishes w-50 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addToCartWishes bi bi-heart" viewBox="0 0 16 16">
+                      <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                    </svg>
+                </span>
+                  </div>
+                </div>
+        `
+        document.getElementById("productsCardSection").innerHTML += productCard;
+        document.getElementById("productCategorySection").innerHTML += productCard;
+        document.getElementById("cardsShopPage").innerHTML += productCard;
+        // console.log(productCard);
+      });
+
+      // console.log(p);
+    }
+    
+    async function showUserCart(){
+      var allProductshere = await allProducts;
+      var userCart = user.cart;
+      var ProuctsToCart = [];
+      allProductshere.forEach(el=>{
+        userCart.forEach(c=>{
+          if(c==Number(el['id'])){
+            ProuctsToCart.push(el);
+          }
+        })
+      });
+      let cartConent = document.getElementById("cartContent");
+      ProuctsToCart.forEach(el=>{
+        var item = `
+        <div class="d-flex row">
+              <img src="${el.img}" class="img-fluid col-5" alt="">
+              <div class="text col-7">
+                <h4 class="h6">${el.name}</h4>
+                <p>price:${el.price}$</p>
+                <div class="btn btn-danger" id="removeFromCart">remove</div>
+              </div>
+            </div>
+            <hr/>
+        `;
+      cartConent.innerHTML +=item;
+      });
+    }
+    showUserCart();
+    getAllProducts();
+
+    addToCartOrWishList(".products .cards");
+    addToCartOrWishList("#CategoryProduct #productCategorySection");
+    addToCartOrWishList("#shopItemsPage .cards");
+    document.querySelector(".products .cards").addEventListener("click",function(evt){
+      if(evt.target.tagName == "IMG"){
+      console.log(evt.target.tagName);
+        window.addEventListener('hashchange', updateProductDetails);
+        updateProductDetails();
+      }
+    });
+    // document.querySelector(".products .cards").addEventListener("click",function(evt){
+    //   console.log(document.querySelectorAll(evt.target));
+    // });
+    console.log(user);
   });

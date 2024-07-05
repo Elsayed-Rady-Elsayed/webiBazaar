@@ -1,0 +1,90 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "name": "Updated Sayed Rady",
+      "email": "updated_sayedrady61@gmail.com",
+      "status": "online",
+      "password": "newpass1111",
+      "cart": [],
+      "wishlist": [
+        22
+      ]
+    },
+    {
+      "id": "2",
+      "name": "fdsa",
+      "email": "sayedrady61@gmail.com",
+      "status": "online",
+      "password": "123",
+      "cart": [],
+      "wishlist": []
+    },
+    {
+      "id": "3",
+      "name": "sayed rady",
+      "email": "sayedrady61@gmail.com",
+      "status": "online",
+      "cart": [
+        2,
+        1,
+        2,
+        2,
+        2
+      ],
+      "wishlist": [
+        2,
+        1,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "id": "4",
+      "name": "sayed rady",
+      "email": "sayedrady61@gmail.com",
+      "status": "online",
+      "cart": [
+        0,
+        2
+      ],
+      "wishlist": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "5",
+      "name": "fdsa",
+      "email": "sayedrady61@gmail.com",
+      "status": "online",
+      "password": "222",
+      "cart": [],
+      "wishlist": []
+    }
+  ],
+  "products": [
+    {
+      "id": "0",
+      "name": "Television with extra feat",
+      "img": "images/p2.jpg",
+      "price": 111,
+      "old_price": 120
+    },
+    {
+      "id": "1",
+      "name": "Television with extra feat",
+      "img": "images/p3.jpg",
+      "price": 50,
+      "old_price": 80
+    },
+    {
+      "id": "2",
+      "name": "Television with extra feat",
+      "img": "images/p4.jpg",
+      "price": 111,
+      "old_price": 120
+    }
+  ]
+}
