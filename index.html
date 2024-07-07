@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="alert alert-success position-absolute z-3 w-100 top-25 d-none" id="alertLoginSucess" role="alert">
     logined successfully
   </div>
@@ -117,14 +118,9 @@
               <a id="HomeFromLogo"><img src="images/logo.png" class="" width="130px" height="29px" alt=""></a>
               <div class="input-group w-75 m-auto d-md-flex d-none">
                 <button class="btn btn-outline-secondary dropdown-toggle px-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Separated link</a></li>
+                <ul class="dropdown-menu" id="DropDownList">
                 </ul>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <input id="searchField" type="text" class="form-control" aria-label="Text input with dropdown button">
                 <button class="btn btn-warning px-4 fw-semibold">search</button>
               </div>
         </div>
@@ -189,14 +185,17 @@
               </ul>
             </div>
         </div>
-        <div class="cart position-absolute bg-light p-1 z-2">
+        <div class="cart position-absolute bg-light p-1 z-3 d-none" id="cartContent">
           <div class="header d-flex justify-content-between align-items-center">
             <h3 class="text-capitalize h4">my cart</h3>
-            <button type="button" class="btn-close" aria-label="Close"></button>
+            <button type="button" id="btnCloseCart" class="btn-close" ></button>
           </div>
           <div class="content" id="cartContent">
             
           </div>
+        </div>
+        <div class="search position-absolute bg-light p-1 z-2 p-5" id="searchContent">
+          
         </div>
     </div>
     <div class="bg-primary d-md-flex align-items-center justify-content-between p-2 flex-row align-content-center d-none">
@@ -236,10 +235,8 @@
                   <a class="btn btn text-light fw-semibold dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     CATEGORIES
                   </a>
-                  <ul class="dropdown-menu dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <ul class="dropdown-menu dropdown-menu" id="headerCategory">
+                    
                   </ul>
                 </li>
               </ul>
@@ -285,9 +282,9 @@
         </button>
     </div>
     <div class="container shopPage" id="shopItemsPage" style="display: none;">
-      <div class="header d-flex align-items-center justify-content-between">
-        <div class="left d-flex gap-3 mt-2">
-          <span id="gridOne">
+      <div class="header d-flex row align-items-center justify-content-between p-2">
+        <div class="col-12 col-md-10">
+          <!-- <span id="gridOne">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
               <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
             </svg>
@@ -296,18 +293,21 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-grid-1x2-fill" viewBox="0 0 16 16">
               <path d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1z"/>
             </svg>
-          </span>
-          <p class="small text-secondary">showing 1-12 of 20 results</p>
+          </span> -->
+          <!-- <p class="small text-secondary">showing 1-12 of 20 results</p> -->
+          <ul class="list-unstyled d-flex gap-3 flex-wrap justify-content-start align-items-center gap-4" id="cateProductUlShopPage">
+
+          </ul>
         </div>
-        <div class="right">
+        <div class="right col-12 col-md-2">
           <div class="dropdown">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Default Sorting
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item sortByName" id="sortingByName" >alpapetical</a></li>
+              <li><a class="dropdown-item sortByPriceascending" id="sortByPriceascending">price ascending</a></li>
+              <li><a class="dropdown-item sortByPricedescending" id="sortByPricedescending">price descending</a></li>
             </ul>
           </div>
         </div>
@@ -711,12 +711,8 @@
         <h6 class="text-uppercase">CATEGORY PRODUCTS</h6>
         <hr class="w-100">
         <div class="categories">
-          <ul class="list-unstyled d-none d-md-flex justify-content-between align-items-center gap-4">
-            <li><a href="" class="text-decoration-none text-warning fw-semibold">ACCESSORIES</a></li>
-            <li><a href="" class="text-decoration-none text-dark fw-semibold">ATOMTRONICS</a></li>
-            <!-- <li><a href="" class="text-decoration-none text-dark fw-semibold">LAMPS</a></li> -->
-            <li><a href="" class="text-decoration-none text-dark fw-semibold">INDUCTION</a></li>
-            <li><a href="" class="text-decoration-none text-dark fw-semibold">LAMP</a></li>
+          <ul class="list-unstyled d-none d-md-flex justify-content-between align-items-center gap-4" id="cateProductUl">
+
           </ul>
         </div>
         <div class="btns d-flex gap-3">
@@ -1721,8 +1717,7 @@
         </div>
       </div>
     </div>
-
-    <script src="jquery-3.7.1.min.js"></script>
+    <!-- <script src="jquery-3.7.1.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="master.js"></script>
