@@ -56,7 +56,9 @@
       "email": "sayedrady61@gmail.com",
       "status": "online",
       "password": "111",
-      "cart": [],
+      "cart": [
+        2
+      ],
       "wishlist": [
         1,
         2,
@@ -111,6 +113,16 @@
       "wishlist": [
         0
       ]
+    },
+    {
+      "id": "5111",
+      "name": "sayed rady",
+      "email": "sayedrady631@gmail.com",
+      "status": "online",
+      "cart": [
+        1
+      ],
+      "wishlist": []
     }
   ],
   "products": [
@@ -120,7 +132,7 @@
       "img": "images/p2.jpg",
       "price": 1112,
       "old_price": 120,
-      "category": "ELECTORNICS"
+      "category": "ELECTRONICS"
     },
     {
       "id": "1",
@@ -128,7 +140,7 @@
       "img": "images/p3.jpg",
       "price": 503,
       "old_price": 80,
-      "category": "ELECTORNICS"
+      "category": "ELECTRONICS"
     },
     {
       "id": "2",
@@ -144,7 +156,7 @@
       "img": "images/p2.jpg",
       "price": 55,
       "old_price": 120,
-      "category": "ELECTORNICS"
+      "category": "MOBILES"
     },
     {
       "id": "4",
@@ -152,7 +164,7 @@
       "img": "images/p3.jpg",
       "price": 50,
       "old_price": 11,
-      "category": "ELECTORNICS"
+      "category": "CLOTHES"
     },
     {
       "id": "5",
@@ -160,7 +172,7 @@
       "img": "images/p4.jpg",
       "price": 22,
       "old_price": 120,
-      "category": "MOBILES"
+      "category": "LAPTOPS"
     },
     {
       "id": "6",
@@ -168,13 +180,25 @@
       "img": "images/p4.jpg",
       "price": 33,
       "old_price": 120,
-      "category": "MOBILES"
+      "category": "CLOTHES"
     }
   ],
   "categories": [
-    "ELECTORNICS",
-    "CLOTHES",
-    "MOBILES",
-    "LAPTOBS"
+    {
+      "id": "0",
+      "name": "ELECTRONICS"
+    },
+    {
+      "id": "1",
+      "name": "CLOTHES"
+    },
+    {
+      "id": "2",
+      "name": "MOBILES"
+    },
+    {
+      "id": "3",
+      "name": "LAPTOPS"
+    }
   ]
 }

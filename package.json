@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "main": "jquery-3.7.1.min.js",
   "scripts": {
-    "start":"json-server --watch ./database/db.json"
+    "start": "json-server --watch ./database/db.json"
   },
   "keywords": [],
   "author": "",
