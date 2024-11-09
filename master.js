@@ -618,8 +618,6 @@ document
   .addEventListener("click", setProductsBasedOnCategory);
 
 async function setProductsBasedOnCategory(evt) {
-  // var allCategoiesHolder = await allCategories;
-  // if(ev)
   if (evt.target.classList.contains("ELECTRONICS")) {
     getAllProductsBasedOnCategory("ELECTRONICS");
   } else if (evt.target.classList.contains("CLOTHES")) {

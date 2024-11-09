@@ -119,9 +119,8 @@
       "name": "sayed rady",
       "email": "sayedrady631@gmail.com",
       "status": "online",
-      "cart": [
-        1
-      ],
+      "password": "123456",
+      "cart": [],
       "wishlist": []
     }
   ],
